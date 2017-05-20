@@ -23,7 +23,7 @@ proc parse_line {name ll} {
   if {$name == {flow} || [regexp {^CH(\d+)} $name cc n]} {
     return $ll
   }
-  ## Maxigauge*.log files
+  ## maxigauge*.log files
   ## contain date, time and channel records with 6 fields each:
   ##  channel name, var name, enable, val, ?, ?
   if {$name == {gauge}} {
@@ -31,7 +31,11 @@ proc parse_line {name ll} {
     foreach {n d e v x1 x2} $ll { lappend ret $v}
     return [join $ret " "]
   }
-
+  ## Channels*.log files
+  ## join the list back to csv
+  if {$name == {chan}} {
+    return [join $ll ","]
+  }
 }
 
 ########################################################################
@@ -73,7 +77,7 @@ foreach name $channels {
         if {$tstamp <= $max} {continue}; #skip old data
         set ll [lreplace $ll 0 1]
         set data [parse_line $name $ll]
-        # if {$verb} {puts "add $tstamp $data"}
+        # if {$verb} {puts "  add $tstamp $data"}
         $db cmd put $dbname $tstamp {*}$data
       }
       close $ff
@@ -81,5 +85,46 @@ foreach name $channels {
     $db cmd sync $dbname
   }
 }
+
+}
+
+# update dbprefix/events database using dbprefix/chan
+proc bf2gr_ev {db dbprefix {verb 1}} {
+
+
+  set dbname_c "${dbprefix}/chan"
+  set dbname_e "${dbprefix}/events"
+  if {$verb} {puts "updating $dbname_e using $dbname_c"}
+
+  ## find last timestamp in the event database
+  ## increase it by 0.1s to skip existing record
+  set max [lindex [lindex [$db cmd get_prev $dbname_e] 0] 0]
+  if {$verb} {puts " max: $max"}
+  set max [expr $max+0.1]
+
+  ## get last state for this timestamp
+  set state_pr [lreplace [lindex [$db cmd get_prev $dbname_c $max] 0] 0 0]
+
+  ## read all newer states, calculate difference, put into event db
+  foreach line [$db cmd get_range $dbname_c $max inf] {
+    set tstamp [lindex $line 0]
+    set state [lreplace $line 0 0]
+    if {$state_pr != {}} {
+      ## find difference between two states
+      set l1 [lreplace [split $state_pr ","] 0 0]
+      set l2 [lreplace [split $state ","] 0 0]
+      foreach {n1 v1} $l1 {n2 v2} $l2 {
+        if {$n1 != $n2} {puts "Error in chan file: $n1 != $n2!"}
+        if {$v1 != $v2} {
+           if     {$v1==1 && $v2==0} {set msg "$n1 off"}\
+           elseif {$v1==0 && $v2==1} {set msg "$n1 on"}\
+           else   {set msg "$n1 $v1->$v2"}
+           if {$verb} {puts "  add $tstamp $msg"}
+           $db cmd put $dbname_e $tstamp {*}$msg
+        }
+      }
+    }
+    set state_pr $state
+  }
 
 }
