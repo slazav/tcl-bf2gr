@@ -1,22 +1,6 @@
 ########################################################################
 # bf2gr -- parse Bluefors logfiles, put data into graphene database.
-# Only data newer then the last database record are read.
-# Function can be run regularly to update the database.
-#
-# Parameters:
-#   db          -- database device (see Device package)
-#   dbprefix    -- database prefix; data goes into <dbprefix>/<channel> database
-#   main_folder -- folder with data
-#   channels    -- name of channels to process
-#   verb        -- verbosity level: 0-1
-#
-# Supported channels:
-#   flow  -- parse Flowmeter*.log files
-#   CH<N>R -- parse CH<N> R*.log file
-#   CH<N>T -- parse CH<N> R*.log file
-#   chan  -- Channels*.log files (not supported yet!)
-#   gauge -- parse Maxigauge*.log files (not supported yet!)
-
+#   V.Zavjalov, 05.2017
 
 proc bf2gr {db dbprefix main_folder channels {verb 1}} {
 
