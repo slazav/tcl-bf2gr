@@ -8,7 +8,7 @@ proc bf2gr {db dbprefix main_folder channels {verb 1}} {
 ## which files correspond to a database
 proc get_glob {name} {
   if {$name == {flow}}  {return {Flowmeter*.log}}
-  if {$name == {gauge}} {return {Maxigauge*.log}}
+  if {$name == {gauge}} {return {maxigauge*.log}}
   if {$name == {chan}}  {return {Channels*.log}}
   if {[regexp {^CH(\d+)R} $name cc n]}  {return "CH$n R*.log"}
   if {[regexp {^CH(\d+)T} $name cc n]}  {return "CH$n T*.log"}
@@ -21,8 +21,17 @@ proc parse_line {name ll} {
   ## file contains three comma-separated columns:
   ## date, time, value
   if {$name == {flow} || [regexp {^CH(\d+)} $name cc n]} {
-    return [lindex $ll 2]
+    return $ll
   }
+  ## Maxigauge*.log files
+  ## contain date, time and channel records with 6 fields each:
+  ##  channel name, var name, enable, val, ?, ?
+  if {$name == {gauge}} {
+    set ret {}
+    foreach {n d e v x1 x2} $ll { lappend ret $v}
+    return [join $ret " "]
+  }
+
 }
 
 ########################################################################
@@ -62,6 +71,7 @@ foreach name $channels {
         set ll [split $line {,}]
         set tstamp [clock scan "[lindex $ll 0] [lindex $ll 1]" -format "%d-%m-%y %H:%M:%S"]
         if {$tstamp <= $max} {continue}; #skip old data
+        set ll [lreplace $ll 0 1]
         set data [parse_line $name $ll]
         # if {$verb} {puts "add $tstamp $data"}
         $db cmd put $dbname $tstamp {*}$data
