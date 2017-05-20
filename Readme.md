@@ -17,7 +17,7 @@
   set dbprefix "cryo"
 
   # Channels we want to update.
-  # Don't forget to create all needed databases (cryo/flow etc.) first
+  # Databases will be created if needed.
   set channels {chan flow  CH1R CH1T CH2R CH2T   CH5R CH5T CH6R CH6T CH7R CH7T }
 
   # verbosity level
@@ -68,12 +68,11 @@ on", "v14 off" are stored.
   set dbprefix "cryo"
 
   # First we need to update chan database in a normal way.
-  # Don't forget to create it with TEXT type
+  # Databases will be created if needed.
   set channels {chan}
   bf2gr db $dbprefix $main_folder $channels $verb
 
-  # Update event database
-  # Don't forget to create it with TEXT type
+  # Update event database (it will be created if needed)
   bf2gr_ev db $dbprefix
 ```
 

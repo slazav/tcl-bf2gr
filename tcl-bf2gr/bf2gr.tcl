@@ -5,6 +5,15 @@
 proc bf2gr {db dbprefix main_folder channels {verb 1}} {
 
 ########################################################################
+## database types
+proc get_dbtype {name} {
+  if {$name == {flow} || $name == {gauge} ||\
+      [regexp {^CH(\d+)[RT]} $name]}  {return {FLOAT}}
+  if {$name == {chan}}  {return {TEXT}}
+  error "unknown channel name: $name"
+}
+
+
 ## which files correspond to a database
 proc get_glob {name} {
   if {$name == {flow}}  {return {Flowmeter*.log}}
@@ -12,7 +21,7 @@ proc get_glob {name} {
   if {$name == {chan}}  {return {Channels*.log}}
   if {[regexp {^CH(\d+)R} $name cc n]}  {return "CH$n R*.log"}
   if {[regexp {^CH(\d+)T} $name cc n]}  {return "CH$n T*.log"}
-  error "get_glob: unknown name: $name"
+  error "unknown channel name: $name"
 }
 
 ## parse line and return list for graphene
@@ -20,7 +29,7 @@ proc parse_line {name ll} {
   ## Flowmeter*.log files, CH$n R*, CH$n T* files:
   ## file contains three comma-separated columns:
   ## date, time, value
-  if {$name == {flow} || [regexp {^CH(\d+)} $name cc n]} {
+  if {$name == {flow} || [regexp {^CH\d+[RT]} $name]} {
     return $ll
   }
   ## maxigauge*.log files
@@ -36,6 +45,7 @@ proc parse_line {name ll} {
   if {$name == {chan}} {
     return [join $ll ","]
   }
+  error "unknown channel name: $name"
 }
 
 ########################################################################
@@ -44,6 +54,13 @@ set all_data_folders [glob -directory $main_folder ??-??-??]
 
 foreach name $channels {
   set dbname "${dbprefix}/$name"
+
+  # check that we know this name, get db type
+  set dbtype [get_dbtype $name]
+
+  # create database if needed
+  if [catch {$db cmd info $dbname}] { $db cmd create $dbname $dbtype }
+
   if {$verb} {puts "updating: $dbname"}
 
   ## get max value
@@ -94,6 +111,10 @@ proc bf2gr_ev {db dbprefix {verb 1}} {
 
   set dbname_c "${dbprefix}/chan"
   set dbname_e "${dbprefix}/events"
+
+  # create event database if needed
+  if [catch {$db cmd info $dbname_e}] { $db cmd create $dbname_e TEXT }
+
   if {$verb} {puts "updating $dbname_e using $dbname_c"}
 
   ## find last timestamp in the event database
