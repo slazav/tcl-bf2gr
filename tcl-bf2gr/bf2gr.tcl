@@ -17,7 +17,7 @@ proc get_dbtype {name} {
 ## which files correspond to a database
 proc get_glob {name} {
   if {$name == {flow}}  {return {Flowmeter*.log}}
-  if {$name == {gauge}} {return {maxigauge*.log}}
+  if {$name == {gauge}} {return {?axigauge*.log}}
   if {$name == {chan}}  {return {Channels*.log}}
   if {[regexp {^CH(\d+)R} $name cc n]}  {return "CH$n R*.log"}
   if {[regexp {^CH(\d+)T} $name cc n]}  {return "CH$n T*.log"}
@@ -89,6 +89,8 @@ foreach name $channels {
       set ff [open $file]
       while {[gets $ff line]>-1} {
         # first two fields is a timestamp
+        set line [string map {"\0" ""} $line]
+        if {$line=={}} continue
         set ll [split $line {,}]
         set tstamp [clock scan "[lindex $ll 0] [lindex $ll 1]" -format "%d-%m-%y %H:%M:%S"]
         if {$tstamp <= $max} {continue}; #skip old data
