@@ -90,6 +90,7 @@ foreach name $channels {
       while {[gets $ff line]>-1} {
         # first two fields is a timestamp
         set line [string map {"\0" ""} $line]
+        set line [string map {"\"" ""} $line]
         if {$line=={}} continue
         set ll [split $line {,}]
         set tstamp [clock scan "[lindex $ll 0] [lindex $ll 1]" -format "%d-%m-%y %H:%M:%S"]
