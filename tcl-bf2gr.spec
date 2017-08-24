@@ -6,7 +6,7 @@ Version: 1.0
 Release: alt1
 BuildArch: noarch
 
-Summary: parse Bluefors logfiles, put data into graphene database
+Summary: parse Bluefors/Magnicon logfiles, put data into graphene database
 Group: System/Libraries
 Source: %name-%version.tar
 License: Unknown
@@ -15,6 +15,7 @@ Requires: tcl
 
 %description
 bf2gr -- parse Bluefors logfiles, put data into graphene database
+magnicon2gr -- parse Magnicon logfiles, put data into graphene database
 
 %prep
 %setup -q

@@ -28,6 +28,20 @@ any change. It is a list of all valves and pumps followed by 0 or 1.
 Function bf2gr_ev updates a new human-readable database `event`, where
 messages look like "turbo on", "v14 off" etc.
 
+## magnicon2gr <db> <dbprefix> <main_folder> <channels> <verb>
+
+Parse Magnicon `*.tmf` logfiles, put data into graphene database.
+
+Only data newer then the last database record are read. Function can be
+run regularly to update the database.
+
+#### Parameters (same as for bf2gr):
+* db          -- database device (see Device package)
+* dbprefix    -- database prefix; data goes into <dbprefix>/<channel> database
+* main_folder -- folder with data
+* channels    -- name of channels to process (shuld be temp)
+* verb        -- verbosity level: 0-1
+
 ---
 ## Usage:
 ```tcl
@@ -58,6 +72,8 @@ messages look like "turbo on", "v14 off" etc.
   # Update event database (it will be created if needed)
   bf2gr_ev db $dbprefix
 
+  # Update Magnicon data
+  magnicon2gr db $dbprefix /mnt/cryo_temp temp $verb
 ```
 
 
