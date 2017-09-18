@@ -64,8 +64,10 @@ foreach name $channels {
   if {$verb} {puts "updating: $dbname"}
 
   ## get max value
-  set max [lindex [lindex [$db cmd get_prev $dbname] 0] 0]
-  if {$verb} {puts " max: $max"}
+  set prev [lindex [$db cmd get_prev $dbname] 0]
+  set max [lindex $prev 0]
+  set maxv [lindex $prev 1]
+  if {$verb} {puts " max: $max $maxv"}
 
   # choose only folders later or equal to maxdate
   if {$max!={}} {
@@ -97,8 +99,13 @@ foreach name $channels {
         if {$tstamp <= $max} {continue}; #skip old data
         set ll [lreplace $ll 0 1]
         set data [parse_line $name $ll]
+
+        # do not put repeated values
+        # (BF program can log data faster then cryobridge measure it)
+        if {$data == $maxv} { continue }
         # if {$verb} {puts "  add $tstamp $data"}
         $db cmd put $dbname $tstamp {*}$data
+        set maxv $data
       }
       close $ff
     }
