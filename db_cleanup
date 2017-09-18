@@ -1,0 +1,15 @@
+#!/bin/sh -efu
+
+# Remove repeated values from databases.
+
+for db in $@; do
+  old=""
+  graphene get_range $db |
+  while read t v; do
+    if [ "$old" = "$v" ]; then
+      echo "del $db $t"
+    else
+      old=$v
+    fi
+  done | graphene -i > /dev/null
+done
