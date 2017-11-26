@@ -102,7 +102,7 @@ foreach name $channels {
 
         # do not put repeated values
         # (BF program can log data faster then cryobridge measure it)
-        if {$data == $maxv} { continue }
+        if {$data == $maxv} { set maxv $data; continue }
         # if {$verb} {puts "  add $tstamp $data"}
         $db cmd put $dbname $tstamp {*}$data
         set maxv $data
