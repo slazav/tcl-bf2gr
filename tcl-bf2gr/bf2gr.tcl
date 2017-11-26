@@ -50,7 +50,7 @@ proc parse_line {name ll} {
 
 ########################################################################
 
-set all_data_folders [glob -directory $main_folder ??-??-??]
+set all_data_folders [glob -nocomplain -directory $main_folder ??-??-??]
 
 foreach name $channels {
   set dbname "${dbprefix}/$name"
