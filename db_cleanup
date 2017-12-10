@@ -2,14 +2,25 @@
 
 # Remove repeated values from databases.
 
-for db in $@; do
+for cryo in fincryo drydemag; do
+for ch in CH1R CH1T CH2R CH2T CH3R CH3T CH4R CH4T CH5R CH5T CH6R CH6T CH7R CH7T CH8R CH8T; do
+
+  db=$cryo/$ch
+  c1=0
+  c2=0
   old=""
   graphene get_range $db |
   while read t v; do
     if [ "$old" = "$v" ]; then
       echo "del $db $t"
+      c1=$(($c1+1))
     else
       old=$v
     fi
+    c2=$(($c2+1))
+    if [ $(($c2%10000)) = 0 ]; then
+      printf "$c1/$c2 records deleted\n" > /dev/stderr
+    fi
   done | graphene -i > /dev/null
+done
 done
