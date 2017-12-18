@@ -6,6 +6,8 @@ package require Device
 
 proc gr2gr {src dst db {verb 1}} {
 
+  if {$verb} {puts "gr2gr: copy $db from $src to $dst"}
+
   # get src database info (error will be proccessed correctly)
   set ret [lindex [$src cmd info $db] 0]
   set src_type  [lindex $ret 0]
@@ -30,12 +32,12 @@ proc gr2gr {src dst db {verb 1}} {
   set t1 [lindex [lindex [$dst cmd get_prev $db] 0] 0]
   if {$t1=={}} {set t1 0}
 
-  if {$verb} {puts "t1: $t1"}
+  if {$verb} {puts " t1: $t1"}
 
   # transer values later then t1
   set i 0
   foreach line [$src cmd get_range $db $t1] { $dst cmd put $db $line; incr i}
-  if {$verb} {puts "add $i records"}
+  if {$verb} {puts " add $i records"}
 
 }
 
