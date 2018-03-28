@@ -105,7 +105,10 @@ foreach name $channels {
       }
 
       # first field is a timestamp
-       $db cmd put $dbname [expr $tst-$tsh+[lindex $line 0]] [lrange $line 1 end]
+      set tt [expr $tst-$tsh+[lindex $line 0]]
+      if {$tt > $max} {
+        $db cmd put $dbname [expr $tst-$tsh+[lindex $line 0]] [lrange $line 1 end]
+      }
     }
     close $ff
     $db cmd sync $dbname
