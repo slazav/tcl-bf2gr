@@ -6,7 +6,7 @@
         "enable": true,
         "iconColor": "rgba(255, 96, 96, 1)",
         "limit": 100,
-        "name": "%prefix%/events",
+        "name": "%prefix%_events",
         "type": "alert"
       }
     ]
@@ -80,7 +80,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH1T"
+              "target": "%prefix%_CH1T"
             }
           ],
           "thresholds": "",
@@ -153,7 +153,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH2T"
+              "target": "%prefix%_CH2T"
             }
           ],
           "thresholds": "",
@@ -226,7 +226,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH5T"
+              "target": "%prefix%_CH5T"
             }
           ],
           "thresholds": "",
@@ -299,7 +299,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH6T"
+              "target": "%prefix%_CH6T"
             }
           ],
           "thresholds": "",
@@ -355,7 +355,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH1R",
+              "alias": "%prefix%_CH1R",
               "yaxis": 2
             }
           ],
@@ -367,12 +367,12 @@
               "hide": false,
               "rawQuery": false,
               "refId": "A",
-              "target": "%prefix%/CH1T"
+              "target": "%prefix%_CH1T"
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "%prefix%/CH1R"
+              "target": "%prefix%_CH1R"
             }
           ],
           "thresholds": [
@@ -454,7 +454,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH2R",
+              "alias": "%prefix%_CH2R",
               "yaxis": 2
             }
           ],
@@ -464,11 +464,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH2T"
+              "target": "%prefix%_CH2T"
             },
             {
               "refId": "B",
-              "target": "%prefix%/CH2R"
+              "target": "%prefix%_CH2R"
             }
           ],
           "thresholds": [],
@@ -535,7 +535,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH5R",
+              "alias": "%prefix%_CH5R",
               "yaxis": 2
             }
           ],
@@ -545,11 +545,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH5T"
+              "target": "%prefix%_CH5T"
             },
             {
               "refId": "B",
-              "target": "%prefix%/CH5R"
+              "target": "%prefix%_CH5R"
             }
           ],
           "thresholds": [],
@@ -615,7 +615,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH6R",
+              "alias": "%prefix%_CH6R",
               "yaxis": 2
             }
           ],
@@ -625,12 +625,12 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH6T"
+              "target": "%prefix%_CH6T"
             },
             {
               "rawQuery": false,
               "refId": "B",
-              "target": "%prefix%/CH6R"
+              "target": "%prefix%_CH6R"
             }
           ],
           "thresholds": [],
@@ -708,7 +708,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH3R",
+              "alias": "%prefix%_CH3R",
               "yaxis": 2
             }
           ],
@@ -718,11 +718,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH3T"
+              "target": "%prefix%_CH3T"
             },
             {
               "refId": "B",
-              "target": "%prefix%/CH3R"
+              "target": "%prefix%_CH3R"
             }
           ],
           "thresholds": [],
@@ -789,7 +789,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH4R",
+              "alias": "%prefix%_CH4R",
               "yaxis": 2
             }
           ],
@@ -799,11 +799,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH4T"
+              "target": "%prefix%_CH4T"
             },
             {
               "refId": "B",
-              "target": "%prefix%/CH4R"
+              "target": "%prefix%_CH4R"
             }
           ],
           "thresholds": [],
@@ -867,7 +867,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH7R",
+              "alias": "%prefix%_CH7R",
               "yaxis": 2
             }
           ],
@@ -877,11 +877,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH7T"
+              "target": "%prefix%_CH7T"
             },
             {
               "refId": "B",
-              "target": "%prefix%/CH7R"
+              "target": "%prefix%_CH7R"
             }
           ],
           "thresholds": [],
@@ -944,11 +944,11 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/CH7R",
+              "alias": "%prefix%_CH7R",
               "yaxis": 2
             },
             {
-              "alias": "%prefix%/CH8R",
+              "alias": "%prefix%_CH8R",
               "yaxis": 2
             }
           ],
@@ -958,11 +958,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/CH8T"
+              "target": "%prefix%_CH8T"
             },
             {
               "refId": "B",
-              "target": "%prefix%/CH8R"
+              "target": "%prefix%_CH8R"
             }
           ],
           "thresholds": [],
@@ -1069,7 +1069,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/flow"
+              "target": "%prefix%_flow"
             }
           ],
           "thresholds": "",
@@ -1142,7 +1142,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:0"
+              "target": "%prefix%_gauge:0"
             }
           ],
           "thresholds": "",
@@ -1215,7 +1215,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:1"
+              "target": "%prefix%_gauge:1"
             }
           ],
           "thresholds": "",
@@ -1288,7 +1288,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:2"
+              "target": "%prefix%_gauge:2"
             }
           ],
           "thresholds": "",
@@ -1361,7 +1361,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:3"
+              "target": "%prefix%_gauge:3"
             }
           ],
           "thresholds": "",
@@ -1434,7 +1434,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:4"
+              "target": "%prefix%_gauge:4"
             }
           ],
           "thresholds": "",
@@ -1507,7 +1507,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:5"
+              "target": "%prefix%_gauge:5"
             }
           ],
           "thresholds": "",
@@ -1537,7 +1537,7 @@
       "panels": [
         {
           "aliasColors": {
-            "%prefix%/flow": "#65C5DB"
+            "%prefix%_flow": "#65C5DB"
           },
           "bars": false,
           "datasource": "slazav",
@@ -1570,7 +1570,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/flow"
+              "target": "%prefix%_flow"
             }
           ],
           "thresholds": [],
@@ -1634,7 +1634,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/gauge:5",
+              "alias": "%prefix%_gauge:5",
               "yaxis": 2
             }
           ],
@@ -1644,11 +1644,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:0"
+              "target": "%prefix%_gauge:0"
             },
             {
               "refId": "B",
-              "target": "%prefix%/gauge:5"
+              "target": "%prefix%_gauge:5"
             }
           ],
           "thresholds": [],
@@ -1711,7 +1711,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/gauge:2",
+              "alias": "%prefix%_gauge:2",
               "yaxis": 2
             }
           ],
@@ -1721,11 +1721,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:1"
+              "target": "%prefix%_gauge:1"
             },
             {
               "refId": "B",
-              "target": "%prefix%/gauge:2"
+              "target": "%prefix%_gauge:2"
             }
           ],
           "thresholds": [],
@@ -1788,7 +1788,7 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "%prefix%/gauge:4",
+              "alias": "%prefix%_gauge:4",
               "yaxis": 2
             }
           ],
@@ -1798,11 +1798,11 @@
           "targets": [
             {
               "refId": "A",
-              "target": "%prefix%/gauge:3"
+              "target": "%prefix%_gauge:3"
             },
             {
               "refId": "B",
-              "target": "%prefix%/gauge:4"
+              "target": "%prefix%_gauge:4"
             }
           ],
           "thresholds": [],
