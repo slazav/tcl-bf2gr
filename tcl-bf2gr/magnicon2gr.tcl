@@ -42,7 +42,7 @@ proc f2t {name} {
 foreach name $channels {
 
   set all_data_files [glob -nocomplain -directory $main_folder "[get_glob $name]"]
-  set dbname "${dbprefix}/$name"
+  set dbname "${dbprefix}_${name}"
 
   # check that we know this name, get db type
   set dbtype [get_dbtype $name]
