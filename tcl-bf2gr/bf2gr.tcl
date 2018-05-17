@@ -65,7 +65,7 @@ foreach name $channels {
 
   ## get max value
   set prev [lindex [$db cmd get_prev $dbname] 0]
-  set max [lindex $prev 0]
+  set max  [lindex $prev 0]
   set maxv [lreplace $prev 0 0]; # list of all values
   if {$verb} {puts " max: $max <$maxv>"}
 
@@ -103,7 +103,15 @@ foreach name $channels {
         # do not put repeated values
         # (BF program can log data faster then cryobridge measure it)
         set do_skip 1
-        foreach A $data B $maxv { if {[format %.6e $A] != [format %.6e $B]} {set do_skip 0} }
+        foreach A $data B $maxv {
+          if {[catch {set diff [expr abs($A-$B)]}]} {
+            # non-numerial
+            if {$A!=$B} {set do_skip 0; break}
+          } else {
+            # numerical
+            if {$diff > 1e-6*abs($A)} {set do_skip 0; break}
+          }
+        }
         if {$verb} {puts " process data: <$data> skip: $do_skip"}
         if {$do_skip} { continue }
 
