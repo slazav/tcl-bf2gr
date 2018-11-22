@@ -112,7 +112,7 @@ foreach name $channels {
             if {$diff > 1e-6*abs($A)} {set do_skip 0; break}
           }
         }
-        if {$verb} {puts " process data: <$data> skip: $do_skip"}
+        if {$verb > 1} {puts " process data: <$line> skip: $do_skip"}
         if {$do_skip} { continue }
 
         # if {$verb} {puts "  add $tstamp $data"}
