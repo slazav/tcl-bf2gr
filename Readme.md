@@ -76,4 +76,12 @@ run regularly to update the database.
   magnicon2gr db $dbprefix /mnt/cryo_temp temp $verb
 ```
 
+## cm2gr <db> <dbprefix> <main_folder> <main_file> [<verb>]
 
+Parse CryoMech logfiles, put data into graphene database.
+
+Only data newer then the last database record are read. Function can be
+run regularly to update the database.
+
+Normally only <main_file> in the <main_folder> is read. But if
+it is too new, all other files in the folder are also scanned.

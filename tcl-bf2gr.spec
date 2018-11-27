@@ -6,7 +6,7 @@ Version: 1.0
 Release: alt1
 BuildArch: noarch
 
-Summary: parse Bluefors/Magnicon logfiles, put data into graphene database
+Summary: parse Bluefors/Magnicon/CryoMech logfiles, put data into graphene database
 Group: System/Libraries
 Source: %name-%version.tar
 License: Unknown
