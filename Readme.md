@@ -1,3 +1,12 @@
+# bf2gr package: collect data drom different sources and put into graphene DB
+
+Sources
+* BlueFors cryostat logfiles
+* CryoMech compressor logfiles
+* Magnicon TempViewer logfiles
+* FMI weather data
+* ROTA bindat/fork/log files
+
 ## bf2gr <db> <dbprefix> <main_folder> <channels> <verb>
 
 Parse Bluefors logfiles, put data into graphene database.

@@ -14,8 +14,12 @@ License: Unknown
 Requires: tcl
 
 %description
-bf2gr -- parse Bluefors logfiles, put data into graphene database
-magnicon2gr -- parse Magnicon logfiles, put data into graphene database
+Collect data drom different sources and put into graphene DB:
+* BlueFors cryostat logfiles
+* CryoMech compressor logfiles
+* Magnicon TempViewer logfiles
+* FMI weather data
+* ROTA bindat/fork/log files
 
 %prep
 %setup -q

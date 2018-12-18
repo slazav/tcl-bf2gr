@@ -1,5 +1,6 @@
 ########################################################################
 # gr2gr -- syncronize graphene databases
+# Works only for new added values.
 #   V.Zavjalov, 11.2017
 
 package require Device
