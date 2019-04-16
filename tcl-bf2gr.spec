@@ -24,7 +24,7 @@ Collect data drom different sources and put into graphene DB:
 %prep
 %setup -q
 
-%build
+%install
 mkdir -p %buildroot/%_tcldatadir/%teaname%major
 install *.tcl %buildroot/%_tcldatadir/%teaname%major
 
