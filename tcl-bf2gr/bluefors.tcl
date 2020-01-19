@@ -53,7 +53,7 @@ proc parse_line {name ll} {
 set all_data_folders [glob -nocomplain -directory $main_folder ??-??-??]
 
 foreach name $channels {
-  set dbname "${dbprefix}_${name}"
+  set dbname "${dbprefix}${name}"
 
   # check that we know this name, get db type
   set dbtype [get_dbtype $name]
@@ -131,8 +131,8 @@ foreach name $channels {
 proc bf2gr_ev {db dbprefix {verb 1}} {
 
 
-  set dbname_c "${dbprefix}_chan"
-  set dbname_e "${dbprefix}_events"
+  set dbname_c "${dbprefix}chan"
+  set dbname_e "${dbprefix}events"
 
   # create event database if needed
   if [catch {$db cmd info $dbname_e}] { $db cmd create $dbname_e TEXT }

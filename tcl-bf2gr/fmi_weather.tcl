@@ -8,7 +8,7 @@
 package require http
 proc weather {db dbprefix fmisid par {verb 1}} {
 
-  set dbname "${dbprefix}_${par}"
+  set dbname "${dbprefix}${par}"
   set dbtype "float"
 
   # create database if needed

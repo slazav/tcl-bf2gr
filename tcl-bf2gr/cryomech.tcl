@@ -16,7 +16,7 @@ proc cm2gr {db dbprefix main_folder main_file {verb 1}} {
 
 #set all_data_folders [glob -nocomplain -directory $main_folder ??-??-??]
 
-set dbname "${dbprefix}_compr"
+set dbname "${dbprefix}compr"
 set dbtype "FLOAT"
 
 # create database if needed

@@ -16,7 +16,7 @@ run regularly to update the database.
 
 #### Parameters:
 * db          -- database device (see Device package)
-* dbprefix    -- database prefix; data goes into <dbprefix>/<channel> database
+* dbprefix    -- database prefix; data goes into <dbprefix><channel> database
 * main_folder -- folder with data
 * channels    -- name of channels to process
 * verb        -- verbosity level: 0-1
@@ -46,7 +46,7 @@ run regularly to update the database.
 
 #### Parameters (same as for bf2gr):
 * db          -- database device (see Device package)
-* dbprefix    -- database prefix; data goes into <dbprefix>/<channel> database
+* dbprefix    -- database prefix; data goes into <dbprefix><channel> database
 * main_folder -- folder with data
 * channels    -- name of channels to process (shuld be temp)
 * verb        -- verbosity level: 0-1

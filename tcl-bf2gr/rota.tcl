@@ -4,7 +4,7 @@
 
 proc rota_fork {db dbprefix main_folder fork_name {verb 1}} {
 
-  set dbname "${dbprefix}_${fork_name}"
+  set dbname "${dbprefix}${fork_name}"
   set dbtype "float"
 
   # create database if needed
@@ -60,7 +60,7 @@ proc rota_fork {db dbprefix main_folder fork_name {verb 1}} {
 
 proc rota_log {db dbprefix main_folder {verb 1}} {
 
-  set dbname "${dbprefix}_log"
+  set dbname "${dbprefix}log"
   set dbtype "TEXT"
 
   # create database if needed
@@ -113,7 +113,7 @@ proc rota_log {db dbprefix main_folder {verb 1}} {
 
 proc rota_bindat {db dbprefix main_folder {verb 1}} {
 
-  set dbname "${dbprefix}_bindat"
+  set dbname "${dbprefix}bindat"
   set dbtype "FLOAT"
 
   # create database if needed
