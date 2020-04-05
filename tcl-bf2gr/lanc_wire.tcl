@@ -50,9 +50,11 @@ proc lanc_wire {dbdev dbname data_files {verb 1} {overwrite 0}} {
     foreach f [glob -nocomplain $g] {
       # open file, get time from the first line:
       set ff [open $f]
-      gets $ff l
+      while {[gets $ff l]>-1} {
+        if {[catch {set ts [line2time $l]}]} {continue}
+        break
+      }
       close $ff
-      set ts [line2time $l]
       if {$ts<$tmax && $ts > $tskip} {set tskip $ts}
       lappend files [list $f $ts]
     }
@@ -67,7 +69,7 @@ proc lanc_wire {dbdev dbname data_files {verb 1} {overwrite 0}} {
     if {$verb} {puts " file: [lindex $f 0]"}
     set ff [open [lindex $f 0]]
     while {[gets $ff l]>-1} {
-      set ts [line2time $l]
+      if {[catch {set ts [line2time $l]}]} {continue}
 
       if {$ts > $tmax} {
         $dbdev cmd put $dbname $ts [lrange $l 2 end]
