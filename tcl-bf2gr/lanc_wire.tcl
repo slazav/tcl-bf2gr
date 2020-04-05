@@ -7,6 +7,8 @@
 #   Each file contains 17 tab-separated columns:
 #     * date dd/mm/YYYY
 #     * time HH:MM:SS
+#     * drive, heightX, widthX, frequencyX, height*width/drive X, fit errorX, backgroundX,
+#     #   DVM, heightY, widthY, frequencyY, height*width/drive Y, fit error Y, background Y
 #
 # 1. Scan all files and extract time of the firs record
 # 2. Choose files with starting time larger then last DB
