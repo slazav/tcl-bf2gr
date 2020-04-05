@@ -6,6 +6,8 @@ Sources
 * Magnicon TempViewer logfiles
 * FMI weather data
 * ROTA bindat/fork/log files
+* Lancaster-style pressure files
+* Lancaster-style wire/fork files
 
 ## bf2gr <db> <dbprefix> <main_folder> <channels> <verb>
 

@@ -3,7 +3,7 @@
 
 set _name    bf2gr
 set _version 1.0
-set _files   {bluefors magnicon gr2gr cryomech fmi_weather rota lanc_press}
+set _files   {bluefors magnicon gr2gr cryomech fmi_weather rota lanc_press lanc_wire}
 
 set _pcmd {}
 foreach _f $_files { lappend _pcmd "source [file join $dir $_f.tcl]" }

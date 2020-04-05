@@ -20,6 +20,8 @@ Collect data drom different sources and put into graphene DB:
 * Magnicon TempViewer logfiles
 * FMI weather data
 * ROTA bindat/fork/log files
+* Lancaster-style pressure files
+* Lancaster-style wire/fork files
 
 %prep
 %setup -q
