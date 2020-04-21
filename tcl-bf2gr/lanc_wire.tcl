@@ -73,7 +73,7 @@ proc lanc_wire {dbdev dbname data_files {verb 1} {overwrite 0}} {
     while {[gets $ff l]>-1} {
       if {[catch {set ts [line2time $l]}]} {continue}
 
-      if {$ts > $tmax} {
+      if {$ts > $tmax || $overwrite} {
         $dbdev cmd put $dbname $ts [lrange $l 2 end]
       }
     }
